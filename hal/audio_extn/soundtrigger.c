@@ -343,7 +343,7 @@ void audio_extn_sound_trigger_set_parameters(struct audio_device *adev __unused,
         else
             ALOGE("%s: unknown CPE status", __func__);
     }
-
+#if 0
     ret = str_parms_get_int(params, "SVA_NUM_SESSIONS", &val);
     if (ret >= 0) {
         event.u.value = val;
@@ -367,6 +367,7 @@ void audio_extn_sound_trigger_set_parameters(struct audio_device *adev __unused,
         strlcpy(event.u.str_value, value, sizeof(event.u.str_value));
         st_dev->st_callback(AUDIO_EVENT_SVA_EXEC_MODE, &event);
     }
+#endif
 }
 
 void audio_extn_sound_trigger_get_parameters(const struct audio_device *adev __unused,
@@ -378,10 +379,12 @@ void audio_extn_sound_trigger_get_parameters(const struct audio_device *adev __u
 
     ret = str_parms_get_str(query, "SVA_EXEC_MODE_STATUS", value,
                                                   sizeof(value));
+#if 0
     if (ret >= 0) {
         st_dev->st_callback(AUDIO_EVENT_SVA_EXEC_MODE_STATUS, &event);
         str_parms_add_int(reply, "SVA_EXEC_MODE_STATUS", event.u.value);
     }
+#endif
 }
 
 int audio_extn_sound_trigger_init(struct audio_device *adev)
